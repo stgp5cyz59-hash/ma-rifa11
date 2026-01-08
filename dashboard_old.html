@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Личный кабинет</title>
+
+    <!-- Основные стили сайта -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Стили для личного кабинета -->
+    <link rel="stylesheet" href="dashboard.css" />
+
+    <!-- Шрифты как в index.html -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Иконки Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* Временные стили, потом перенесём в dashboard.css */
+      .dashboard-wrapper {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          rgba(138, 74, 95, 0.1) 0%,
+          rgba(212, 165, 116, 0.05) 100%
+        );
+        backdrop-filter: blur(10px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Фон как на главной -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Светящиеся линии по бокам -->
+    <div class="side-lines">
+      <div class="side-line left"></div>
+      <div class="side-line right"></div>
+    </div>
+
+    <!-- Падающие звёздочки -->
+    <div class="falling-stars" id="fallingStars"></div>
+
+    <!-- Основной контейнер личного кабинета -->
+    <div class="dashboard-wrapper">
+      <!-- Боковая панель навигации -->
+      <nav class="dashboard-sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <div class="arabic-logo">م</div>
+            <div class="latin-logo">MARIFA</div>
+          </div>
+          <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+        <div class="sidebar-user">
+          <div class="user-avatar">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="user-info">
+            <div class="user-name" id="userName">Гость</div>
+            <div class="user-level" id="userLevel">Начинающий</div>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li class="menu-item active">
+            <a href="dashboard.html" class="menu-link">
+              <i class="fas fa-home"></i>
+              <span>Главная</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="study.html" class="menu-link">
+              <i class="fas fa-book-quran"></i>
+              <span>Таджвид</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="homework.html" class="menu-link">
+              <i class="fas fa-tasks"></i>
+              <span>Домашнее задание</span>
+              <span class="menu-badge">2</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="chat.html" class="menu-link">
+              <i class="fas fa-comments"></i>
+              <span>Чат</span>
+              <span class="menu-badge">3</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="quran.html" class="menu-link">
+              <i class="fas fa-quran"></i><span>Коран & Дуа</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="class.html" class="menu-link">
+              <i class="fas fa-users"></i>
+              <span>Мой класс</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="favorites.html" class="menu-link">
+              <i class="fas fa-star"></i>
+              <span>Избранное</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="profile.html" class="menu-link">
+              <i class="fas fa-user"></i>
+              <span>Профиль</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="settings.html" class="menu-link">
+              <i class="fas fa-cog"></i>
+              <span>Настройки</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <button class="logout-btn" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Выйти</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Основной контент -->
+      <main class="dashboard-content" id="mainContent">
+        <!-- Верхняя панель -->
+        <header class="dashboard-header">
+          <div class="header-left">
+            <h1 class="page-title" id="pageTitle">Личный кабинет</h1>
+            <div class="breadcrumb">
+              <span class="breadcrumb-item">Главная</span>
+              <i class="fas fa-chevron-right"></i>
+              <span class="breadcrumb-item active">Дашборд</span>
+            </div>
+          </div>
+
+          <div class="header-right">
+            <button class="header-btn notifications-btn" id="notificationsBtn">
+              <i class="fas fa-bell"></i>
+              <span class="badge">3</span>
+            </button>
+            <button class="header-btn theme-toggle" id="themeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Основной контент страницы -->
+        <div class="content-area">
+          <!-- Приветственная карточка -->
+          <section class="welcome-card">
+            <div class="welcome-content">
+              <div class="greeting">
+                <div class="greeting-arabic">ٱلسَّلَامُ عَلَيْكُمْ</div>
+                <h2 class="greeting-text">
+                  Добро пожаловать, <span id="greetingName">Айша</span>!
+                </h2>
+                <p class="greeting-subtext">
+                  Продолжайте ваше путешествие к совершенному чтению
+                </p>
+              </div>
+              <div class="welcome-stats">
+                <div class="stat-item">
+                  <i class="fas fa-fire"></i>
+                  <div>
+                    <div class="stat-value" id="streakDays">7</div>
+                    <div class="stat-label">дней подряд</div>
+                  </div>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-clock"></i>
+                  <div>
+                    <div class="stat-value" id="totalHours">14</div>
+                    <div class="stat-label">часов всего</div>
+                  </div>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-trophy"></i>
+                  <div>
+                    <div class="stat-value" id="userLevelShort">2</div>
+                    <div class="stat-label">уровень</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="welcome-decoration">
+              <i class="fas fa-star"></i>
+            </div>
+          </section>
+
+          <!-- Быстрые действия -->
+          <section class="quick-actions">
+            <h3 class="section-title">
+              <i class="fas fa-bolt"></i>
+              Быстрые действия
+            </h3>
+            <div class="actions-grid">
+              <a href="study.html" class="action-card">
+                <div class="action-icon continue">
+                  <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="action-content">
+                  <h4>Продолжить обучение</h4>
+                  <p>Буква "ق" - последний урок</p>
+                </div>
+                <div class="action-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </a>
+
+              <a href="homework.html" class="action-card">
+                <div class="action-icon homework">
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <div class="action-content">
+                  <h4>Домашнее задание</h4>
+                  <p>2 задания ждут проверки</p>
+                </div>
+                <div class="action-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </a>
+
+              <a href="chat.html" class="action-card">
+                <div class="action-icon chat">
+                  <i class="fas fa-comments"></i>
+                </div>
+                <div class="action-content">
+                  <h4>Чат</h4>
+                  <p>3 новых сообщения</p>
+                </div>
+                <div class="action-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </a>
+
+              <a href="quran.html" class="action-card">
+                <div class="action-icon quran">
+                  <i class="fas fa-quran"></i>
+                </div>
+                <div class="action-content">
+                  <h4>Коран & Дуа</h4>
+                  <p>Читать и сохранять</p>
+                </div>
+                <div class="action-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <!-- Прогресс обучения -->
+          <section class="progress-section">
+            <div class="section-header">
+              <h3 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Ваш прогресс
+              </h3>
+              <a href="profile.html" class="section-link">
+                Подробнее <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <div class="progress-cards">
+              <div class="progress-card">
+                <div class="progress-header">
+                  <div class="progress-icon">
+                    <i class="fas fa-font"></i>
+                  </div>
+                  <div class="progress-info">
+                    <h4>Арабский алфавит</h4>
+                    <div class="progress-stats">
+                      <span class="current" id="lettersCurrent">12</span>
+                      <span class="total">/28 букв</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="progress-bar">
+                  <div
+                    class="progress-fill"
+                    id="lettersProgress"
+                    style="width: 43%"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="progress-card">
+                <div class="progress-header">
+                  <div class="progress-icon">
+                    <i class="fas fa-book-open"></i>
+                  </div>
+                  <div class="progress-info">
+                    <h4>Правила таджвида</h4>
+                    <div class="progress-stats">
+                      <span class="current" id="rulesCurrent">5</span>
+                      <span class="total">/15 правил</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="progress-bar">
+                  <div
+                    class="progress-fill"
+                    id="rulesProgress"
+                    style="width: 33%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Сегодняшние задачи -->
+          <section class="tasks-section">
+            <h3 class="section-title">
+              <i class="fas fa-calendar-day"></i>
+              Сегодняшние задачи
+            </h3>
+            <div class="tasks-list">
+              <div class="task-item">
+                <div class="task-checkbox">
+                  <input type="checkbox" id="task1" />
+                  <label for="task1"></label>
+                </div>
+                <div class="task-content">
+                  <h4>Посмотреть видео про махрадж</h4>
+                  <p class="task-time"><i class="far fa-clock"></i> 10 минут</p>
+                </div>
+                <button class="task-action">
+                  <i class="fas fa-play"></i>
+                </button>
+              </div>
+
+              <div class="task-item">
+                <div class="task-checkbox">
+                  <input type="checkbox" id="task2" />
+                  <label for="task2"></label>
+                </div>
+                <div class="task-content">
+                  <h4>Сделать упражнения по буквам ب ت ث</h4>
+                  <p class="task-time"><i class="far fa-clock"></i> 15 минут</p>
+                </div>
+                <button class="task-action">
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <div class="task-item">
+                <div class="task-checkbox">
+                  <input type="checkbox" id="task3" />
+                  <label for="task3"></label>
+                </div>
+                <div class="task-content">
+                  <h4>Ответить учителю в чате</h4>
+                  <p class="task-time"><i class="fas fa-comment"></i> Важно</p>
+                </div>
+                <button class="task-action">
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Мотивационная цитата -->
+          <section class="quote-card">
+            <div class="quote-content">
+              <div class="quote-text">
+                "Лучший из вас — изучающий Коран и обучающий ему других"
+              </div>
+              <div class="quote-author">— Аль-Бухари</div>
+            </div>
+            <div class="quote-decoration">
+              <i class="fas fa-quote-right"></i>
+            </div>
+          </section>
+
+          <!-- Ваш класс -->
+          <section class="class-preview">
+            <div class="section-header">
+              <h3 class="section-title">
+                <i class="fas fa-users"></i>
+                Ваш класс
+              </h3>
+              <a href="class.html" class="section-link">
+                Все 12 <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="class-members">
+              <div class="member-item teacher">
+                <div class="member-avatar">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="member-info">
+                  <h4>Устаз Ахмад</h4>
+                  <p class="member-status online">Онлайн</p>
+                </div>
+              </div>
+
+              <div class="member-item">
+                <div class="member-avatar">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="member-info">
+                  <h4>Айша</h4>
+                  <p class="member-status online">Онлайн</p>
+                </div>
+              </div>
+
+              <div class="member-item">
+                <div class="member-avatar">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="member-info">
+                  <h4>Мухаммад</h4>
+                  <p class="member-status away">Был 2 ч назад</p>
+                </div>
+              </div>
+
+              <div class="member-item">
+                <div class="member-avatar">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="member-info">
+                  <h4>Сафия</h4>
+                  <p class="member-status offline">Не в сети</p>
+                </div>
+              </div>
+
+              <div class="member-more">
+                <span>+8</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Футер -->
+        <footer class="dashboard-footer">
+          <div class="footer-text">
+            © 2024 MA'RIFA. Путь к совершенному чтению.
+          </div>
+          <div class="footer-links">
+            <a href="#">Помощь</a><a href="#">О проекте</a>
+            <a href="#">Контакты</a>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="dashboard.js"></script>
+  </body>
+</html>
